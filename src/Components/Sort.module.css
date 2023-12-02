@@ -1,0 +1,9 @@
+.radioContainer{
+}
+.radioButtons{
+    display: flex;
+    justify-content: space-around;
+}
+label{
+    font-size: 28px;
+}

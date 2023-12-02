@@ -20,15 +20,23 @@ class Main extends React.Component{
         this.handleFilter = this.handleFilter.bind(this);
     }
     componentDidMount(){
-        axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&s=simpsons`)
+        axios.get(`https://www.omdbapi.com/?apikey=${API_KEY}&s=simpsons`)
             .then(response => this.setState({movies: response.data.Search, loading: false}))
+            .catch((err) => {
+                console.error(err)
+                this.setState({loading: false})
+            })
         }
     searchHandler(event){
             this.setState({search: event.target.value})
         }
     goSearch(str, type = "all"){
-            axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${type !== "all" ? `&type=${type}` : ""}`)
+            axios.get(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${type !== "all" ? `&type=${type}` : ""}`)
             .then(response => this.setState({movies: response.data.Search, loading: false }))
+            .catch((err) => {
+                console.error(err)
+                this.setState({loading: false})
+            })
         }
     handleFilter(event){
         this.setState(() => ({categories: event.target.dataset.type}),
